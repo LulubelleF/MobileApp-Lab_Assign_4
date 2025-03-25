@@ -20,6 +20,19 @@ export default function App() {
     setTasks([...tasks, taskText]);
     setError("");
   };
+
 }
+return (
+  <View style={styles.container}>
+    <ToDoForm addTask={addTask} />
+    {error ? <Text style={styles.error}>{error}</Text> : null}
+
+    <FlatList
+      data={tasks}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ item }) => <Text style={styles.task}>{item}</Text>}
+    />
+  </View>
+);
 
 const styles = StyleSheet.create({});
