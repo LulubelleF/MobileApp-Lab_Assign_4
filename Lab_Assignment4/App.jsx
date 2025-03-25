@@ -21,18 +21,39 @@ export default function App() {
     setError("");
   };
 
+  return (
+    <View style={styles.container}>
+      <ToDoForm addTask={addTask} />
+      {error ? <Text style={styles.error}>{error}</Text> : null}
+
+      <FlatList
+        data={tasks}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => <Text style={styles.task}>{item}</Text>}
+      />
+    </View>
+  );
 }
-return (
-  <View style={styles.container}>
-    <ToDoForm addTask={addTask} />
-    {error ? <Text style={styles.error}>{error}</Text> : null}
 
-    <FlatList
-      data={tasks}
-      keyExtractor={(item, index) => index.toString()}
-      renderItem={({ item }) => <Text style={styles.task}>{item}</Text>}
-    />
-  </View>
-);
-
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 50,
+    paddingHorizontal: 20,
+    backgroundColor: "#f5f5f5",
+  },
+  task: {
+    padding: 10,
+    fontSize: 18,
+    backgroundColor: "#ffffff",
+    borderBottomWidth: 1,
+    borderColor: "#ddd",
+    marginTop: 5,
+    borderRadius: 5,
+  },
+  error: {
+    color: "red",
+    marginBottom: 10,
+    fontSize: 16,
+  },
+});
