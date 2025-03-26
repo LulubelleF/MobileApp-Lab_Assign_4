@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, FlatList, Text, StyleSheet } from "react-native";
+import { View, FlatList, Text, StyleSheet, Button } from "react-native";
 import ToDoForm from "./component/ToDoForm";
 
 export default function App() {
@@ -21,10 +21,17 @@ export default function App() {
     setError("");
   };
 
+  const clearTasks = () => {
+    setTasks([]);
+    setError("");
+  };
+
   return (
     <View style={styles.container}>
       <ToDoForm addTask={addTask} />
       {error ? <Text style={styles.error}>{error}</Text> : null}
+
+      <Button title="Clear All Tasks" onPress={clearTasks} color="#d9534f" />
 
       <FlatList
         data={tasks}
